@@ -1,7 +1,5 @@
-﻿using Mirror;
-using Synapse.Api;
+﻿using Synapse.Api;
 using Synapse.Command;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace WooshRagdolls.Command
