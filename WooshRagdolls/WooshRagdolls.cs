@@ -4,12 +4,12 @@ namespace WooshRagdolls
 {
     [PluginInformation(
         Author = "AlmightyLks",
-        Description = "Simply clear the map off all ragdolls",
+        Description = "Some simple utilities to manage ragdolls",
         Name = "WooshRagdolls",
         SynapseMajor = 2,
         SynapseMinor = 0,
         SynapsePatch = 0,
-        Version = "0.0.1"
+        Version = "1.0.0"
         )]
     public class WooshRagdolls : AbstractPlugin
     {
