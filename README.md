@@ -24,6 +24,6 @@ WooshRagdolls.woosh
 # Shall the Command display the execution speed?
 measureExecutionSpeed: false
 # Toggle ragdoll spawning
-noRagdollSpawning: true
+noRagdollSpawning: false
 }
 ```
