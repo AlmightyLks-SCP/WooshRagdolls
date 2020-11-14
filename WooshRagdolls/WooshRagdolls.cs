@@ -14,8 +14,12 @@ namespace WooshRagdolls
     public class WooshRagdolls : AbstractPlugin
     {
         [Config(section = "WooshRagdolls")]
-        public static PluginConfig Config { get; }
+        public static PluginConfig Config;
         public override void Load()
-            => SynapseController.Server.Logger.Info("<WooshRagdolls> Loaded");
+        {
+            SynapseController.Server.Logger.Info("<WooshRagdolls> Loaded");
+
+            _ = new PluginEventHandler();
+        }
     }
 }

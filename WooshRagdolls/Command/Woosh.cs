@@ -6,10 +6,10 @@ namespace WooshRagdolls.Command
 {
     [CommandInformation(
         Name = "Woosh",
-        Aliases = new string[] { "woosh" },
-        Description = "Woosh all ragdolls off the map",
+        Description = "Woosh either all or the last X amount of ragdolls off the map",
+        Permission = "WooshRagdolls.woosh",
         Platforms = new Platform[] { Platform.RemoteAdmin },
-        Usage = "Woosh"
+        Usage = "\"Woosh\" or \"Woosh [Amount]\""
         )]
     public class Woosh : ISynapseCommand
     {
@@ -17,21 +17,58 @@ namespace WooshRagdolls.Command
         {
             var result = new CommandResult();
             Stopwatch watch = new Stopwatch();
-            var num = Map.Get.Ragdolls.Count;
+            var amountRagdolls = Map.Get.Ragdolls.Count;
 
-            watch.Start();
+            if (amountRagdolls == 0)
+            {
+                result.Message = "No Ragdolls.";
+                result.State = CommandResultState.Error;
+                return result;
+            }
 
-            foreach (var ragdoll in Map.Get.Ragdolls.ToArray())
-                ragdoll.Destroy();
+            if (context.Arguments.Array.Length == 1)
+            {
+                watch.Start();
 
-            watch.Stop();
+                foreach (var ragdoll in Map.Get.Ragdolls.ToArray())
+                    ragdoll.Destroy();
 
-            result.Message += $"Removed {num} ragdolls";
+                watch.Stop();
 
-            if (WooshRagdolls.Config.MeasureExecutionSpeed)
-                result.Message += $"\n{watch.Elapsed.TotalMilliseconds} ms";
+                result.Message += $"Removed {amountRagdolls} ragdolls";
 
-            result.State = CommandResultState.Ok;
+                if (WooshRagdolls.Config.MeasureExecutionSpeed)
+                    result.Message += $"\n{watch.Elapsed.TotalMilliseconds} ms";
+
+                result.State = CommandResultState.Ok;
+            }
+            else if (context.Arguments.Array.Length == 2 && int.TryParse(context.Arguments.Array[1], out int delAmount))
+            {
+                watch.Start();
+
+                if (delAmount > amountRagdolls)
+                    delAmount = amountRagdolls;
+
+                var ragdolls = Map.Get.Ragdolls.ToArray();
+
+
+                for (int i = ragdolls.Length - 1; i > (ragdolls.Length - delAmount) - 1; i--)
+                    ragdolls[i].Destroy();
+
+                watch.Stop();
+
+                result.Message += $"Removed {delAmount} ragdolls";
+
+                if (WooshRagdolls.Config.MeasureExecutionSpeed)
+                    result.Message += $"\n{watch.Elapsed.TotalMilliseconds} ms";
+
+                result.State = CommandResultState.Ok;
+            }
+            else
+            {
+                result.Message = "Wrong usage.";
+                result.State = CommandResultState.Error;
+            }
 
             return result;
         }

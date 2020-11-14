@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Command\Woosh.cs" />
     <Compile Include="PluginConfig.cs" />
+    <Compile Include="Handler\PluginEventHandler.cs" />
     <Compile Include="WooshRagdolls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
