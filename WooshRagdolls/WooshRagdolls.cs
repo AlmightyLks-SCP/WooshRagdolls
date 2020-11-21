@@ -7,9 +7,9 @@ namespace WooshRagdolls
         Description = "Some simple utilities to manage ragdolls",
         Name = "WooshRagdolls",
         SynapseMajor = 2,
-        SynapseMinor = 0,
+        SynapseMinor = 1,
         SynapsePatch = 0,
-        Version = "1.0.0"
+        Version = "1.1.0"
         )]
     public class WooshRagdolls : AbstractPlugin
     {
