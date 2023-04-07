@@ -1,3 +1,8 @@
+# OUTDATED
+This Plugin was intended for Synapse 2, and is not made, nor compatible with Synapse3.
+
+---
+
 # WooshRagdolls
 
 A simple SCP SL [Synapse](https://github.com/SynapseSL/Synapse/) Plugin for some utilities to manage ragdolls<br>
